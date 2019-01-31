@@ -34,4 +34,8 @@
 
     <bean id="demoService" class="com.alibaba.dubbo.config.spring.impl.DemoServiceImpl"/>
 
+    <dubbo:service interface="com.alibaba.dubbo.config.spring.api.DemoService">
+        <property name="userName" value="ityongman" />
+    </dubbo:service>
+
 </beans>
