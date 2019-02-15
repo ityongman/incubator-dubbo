@@ -35,7 +35,8 @@ import static org.junit.Assert.assertThat;
 
 public class RedisRegistryTest {
 
-    private String service = "com.alibaba.dubbo.test.injvmServie";
+//    private String service = "com.alibaba.dubbo.test.injvmServie";
+    private String service = "com.alibaba.dubbo.test.DemoServie";
     private URL serviceUrl = URL.valueOf("redis://redis/" + service + "?notify=false&methods=test1,test2");
     private RedisServer redisServer;
     private RedisRegistry redisRegistry;

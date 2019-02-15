@@ -287,6 +287,23 @@ public abstract class AbstractRegistry implements Registry {
     }
 
     @Override
+    public void unsubscribe(URL url, NotifyListener listener) {
+        if (url == null) {
+            throw new IllegalArgumentException("unsubscribe url == null");
+        }
+        if (listener == null) {
+            throw new IllegalArgumentException("unsubscribe listener == null");
+        }
+        if (logger.isInfoEnabled()) {
+            logger.info("Unsubscribe: " + url);
+        }
+        Set<NotifyListener> listeners = subscribed.get(url);
+        if (listeners != null) {
+            listeners.remove(listener);
+        }
+    }
+
+    @Override
     public void subscribe(URL url, NotifyListener listener) {
         if (url == null) {
             throw new IllegalArgumentException("subscribe url == null");
@@ -303,23 +320,6 @@ public abstract class AbstractRegistry implements Registry {
             listeners = subscribed.get(url);
         }
         listeners.add(listener);
-    }
-
-    @Override
-    public void unsubscribe(URL url, NotifyListener listener) {
-        if (url == null) {
-            throw new IllegalArgumentException("unsubscribe url == null");
-        }
-        if (listener == null) {
-            throw new IllegalArgumentException("unsubscribe listener == null");
-        }
-        if (logger.isInfoEnabled()) {
-            logger.info("Unsubscribe: " + url);
-        }
-        Set<NotifyListener> listeners = subscribed.get(url);
-        if (listeners != null) {
-            listeners.remove(listener);
-        }
     }
 
     protected void recover() throws Exception {
